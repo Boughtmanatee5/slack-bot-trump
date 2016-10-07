@@ -1,3 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'http'
+gem 'slack-ruby-bot'
+gem 'celluloid-io'
+gem 'twitter'
+gem 'sinatra'
