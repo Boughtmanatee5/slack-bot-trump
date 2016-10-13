@@ -1,4 +1,5 @@
 require 'slack-ruby-bot'
+require './MsgGen'
 
 SlackRubyBot.configure do |config|
   config.aliases = ['don', 'donald', 'trump']
@@ -7,13 +8,17 @@ end
 # SlackRubyBot.default do |client, data, match|
 #   client.say(text: "<@#{data.user}>, What a loser huh? Sad. real Sad.", channel: data.channel)
 # end
-
 class TrumpBot < SlackRubyBot::Bot
+  include MsgGen
   command 'hi' do |client, data, match|
     client.say(text: 'test', channel: data.channel)
   end
   command 'hillary' do |client, data, match|
     client.say(text: "<@#{data.user}>, It's all lies. Check out https://www.lyingcrookedhillary.com/. Sad.", channel: data.channel)
+  end
+  command 'speak' do |client, data, match|
+    msg = MsgGen.genMessage 1 + rand(4)
+    client.say(text: msg, channel: data.channel)
   end
 end
 
